@@ -71,7 +71,7 @@ def jianguo_dav(rb_data,webdav_data,action='upload'):
 		elif action =='download':
 			file = client.download_file(name)
 			if file:
-				print(file.text.encode("iso-8859-1").decode(encoding="utf-8"))
+				#print(file.text.encode("iso-8859-1").decode(encoding="utf-8"))
 				# 打印结果，之后会重定向到log
 				print('download at ' + name)
 				return file.text.encode("iso-8859-1").decode(encoding="utf-8")
@@ -189,7 +189,7 @@ else:
 up = 0
 for user in users:
 	username,password,email_ = user
-	print('开始检查',username)
+	print('开始检查',username,password,email_)
 	try:
 		grade[username]
 		need_upload =check(email_user,username,password,email_,grade[username])
