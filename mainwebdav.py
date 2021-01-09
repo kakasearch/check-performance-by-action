@@ -8,7 +8,6 @@ import swjtu_jw_login
 import requests
 import re,os
 from lxml import etree
-import sys
 import smtplib
 from email import encoders
 from email.mime.text import MIMEText
@@ -178,9 +177,9 @@ def check(email_user,username,password,email_,grade_,has_login=0):
 
 #main start
 
-users  = sys.argv[2]
-webdav_data = sys.argv[1].split('#')#webdav 的账号#密码 
-email_user = sys.argv[3].split('#')#email的账号#密码 
+users  = os.environ['users']
+webdav_data =  os.environ['web_dav'].split('#')#webdav 的账号#密码 
+email_user =  os.environ['email_user'].split('#')#email的账号#密码 
 users = [tuple(user.split(',')) for user in users.split('#')]
 has_data = jianguo_dav(0,webdav_data,action='download')#dict or 0
 if has_data:

@@ -20,9 +20,9 @@ jobs:
     - name: Install Dependence
       run: pip install requests lxml webdavclient3
     - name: Run main.py
-      run: |
-          user='${{ secrets.users }}'
-          web_dav='${{ secrets.web_dav }}'
-          email_user ='${{ secrets.email_user }}'
-          python main_webdav.py ${web_dav} ${user} ${email_user}
+      env:
+          web_dav: ${{ secrets.web_dav }}
+          users: ${{ secrets.users }}
+          email_user: ${{ secrets.email_user }}
+      run: python mainwebdav.py
           
