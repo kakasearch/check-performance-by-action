@@ -82,9 +82,9 @@ def jianguo_dav(rb_data,webdav_data,action='upload'):
 		print('An error happen: LocalResourceNotFound ---'  + name)
 		return 0
 
-def send_email(receivers = ['1093230325@qq.com'],subject='test',content='测试内容'):
-	sender = 'yxtk2019@163.com'#
-	passWord = 'USWCJWITXRUQPGKL'
+def send_email(email_user,receivers,subject='test',content='测试内容'):
+	sender =email_user[0]
+	passWord = email_user[1]
 	mail_host = 'smtp.163.com'
 	#receivers是邮件接收人，用列表保存，可以添加多个
 	
@@ -117,7 +117,7 @@ def send_email(receivers = ['1093230325@qq.com'],subject='test',content='测试�
 		print ("Falied,%s",e)
 		return False
 
-def check(username,password,email_,grade_,has_login=0):
+def check(email_user,username,password,email_,grade_,has_login=0):
 	if not has_login:
 		login = swjtu_jw_login.login(username,password)
 		session = login.session
@@ -159,7 +159,7 @@ def check(username,password,email_,grade_,has_login=0):
 				grade_.append(cj_str)
 			else:
 				if cj_str not in grade_:
-					send_email(receivers = [email_],subject='教务网成绩跟新提醒',content=cj_str)
+					send_email(email_user,receivers = [email_],subject='教务网成绩跟新提醒',content=cj_str)
 					new = 1 # 有新的
 					grade_.append(cj_str)
 
@@ -180,6 +180,7 @@ def check(username,password,email_,grade_,has_login=0):
 
 users  = sys.argv[2]
 webdav_data = sys.argv[1].split('#')#webdav 的账号#密码 
+email_user = sys.argv[3].split('#')#email的账号#密码 
 users = [tuple(user.split(',')) for user in users.split('#')]
 has_data = jianguo_dav(0,webdav_data,action='download')#dict or 0
 if has_data:
@@ -192,9 +193,9 @@ for user in users:
 	print('开始检查',username)
 	try:
 		grade[username]
-		need_upload =check(username,password,email_,grade[username])
+		need_upload =check(email_user,username,password,email_,grade[username])
 	except:
-		need_upload =check(username,password,email_,[])
+		need_upload =check(email_user,username,password,email_,[])
 	if need_upload:
 		grade[username] = need_upload
 		up =1#
