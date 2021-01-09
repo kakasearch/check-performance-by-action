@@ -18,7 +18,7 @@ jobs:
       with:
           python-version: 3.7
     - name: Install Dependence
-      run: pip install requests lxml webdav3
+      run: pip install requests lxml webdavclient3
     - name: Run main.py
       run: |
           user='${{ secrets.users }}'
