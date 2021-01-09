@@ -23,5 +23,6 @@ jobs:
       run: |
           user='${{ secrets.users }}'
           web_dav='${{ secrets.web_dav }}'
-          python main_webdav.py ${web_dav} ${user}
+          email_user ='${{ secrets.email_user }}'
+          python main_webdav.py ${web_dav} ${user} ${email_user}
           
