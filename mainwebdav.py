@@ -189,7 +189,7 @@ else:
 up = 0
 for user in users:
 	username,password,email_ = user
-	print('开始检查',username,password,email_)
+	print('开始检查')
 	try:
 		grade[username]
 		need_upload =check(email_user,username,password,email_,grade[username])

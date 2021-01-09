@@ -29,10 +29,10 @@ class random_num():#获取验证码
 			#print(response.json())
 			try:
 				result = response.json()['words_result'][0]
-				print('1',result)
+				#print('1',result)
 				self.result = result['words'].strip()
 				if len(self.result) != 4:
-					print(self.result)
+					#print(self.result)
 					raise Exception("Invalid")
 			except:
 				self.tryagain('get_str')
@@ -40,7 +40,7 @@ class random_num():#获取验证码
 
 class login():#柔和验证码获取
 	def tryagain(self,name):
-		print('重试'+name)
+		#print('重试'+name)
 		eval("self."+name + '()')
 	def get_str(self):
 		r = self.session.get("http://jwc.swjtu.edu.cn/vatuu/GetRandomNumberToJPEG?test="+str(int(time.time())))
@@ -57,10 +57,10 @@ class login():#柔和验证码获取
 				#print('1',result)
 				self.yzm = result['words'].strip()
 				if len(self.yzm) != 4:
-					print(self.yzm)
+					#print(self.yzm)
 					raise Exception("Invalid")
 			except:
-				print(response.text)
+				#print(response.text)
 				self.tryagain('get_str')
 	def __init__(self,username="",password=""):
 		#获取用户信息
@@ -107,7 +107,7 @@ class login():#柔和验证码获取
 		}
 		r = self.session.post("http://jwc.swjtu.edu.cn/vatuu/UserLoginAction", data=sendmsg ,headers=login_header)
 		loginMsg = json.loads(r.text)['loginMsg']
-		print(loginMsg)
+		#print(loginMsg)
 		if '不正确' in loginMsg:
 			self.__init__(self.username,self.password)
 
@@ -128,4 +128,5 @@ class login():#柔和验证码获取
 		    'Accept-Language' : 'zh-CN,zh;q=0.9'
 		}
 		r = self.session.post("http://jwc.swjtu.edu.cn/vatuu/UserLoadingAction", data=sendmsg ,headers=login_header)
+		print('登陆成功')
 		#已经成功登陆
