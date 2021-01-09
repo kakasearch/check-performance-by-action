@@ -1,0 +1,27 @@
+name: grade-check
+
+on:
+  schedule:
+      - cron: '0 0/30 * * * ? *'
+  push:
+
+jobs:
+  job_1:
+    name: Python check grade
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Python environment
+      uses: actions/setup-python@v2
+      with:
+          python-version: 3.7
+    - name: Install Dependence
+      run: pip install requests lxml webdav3
+    - name: Run main.py
+      run: |
+          user='${{ secrets.users }}'
+          web_dav='${{ secrets.web_dav }}'
+          python main_webdav.py ${web_dav} ${user}
+          
