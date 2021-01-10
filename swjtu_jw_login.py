@@ -68,12 +68,8 @@ class login():#柔和验证码获取
 			self.username = username
 			self.password = password
 		else:
-			self.username = input("请输入教务网用户名：")
-			self.password = input("请输入密码：")
-		try:
-			os.system('cls')
-		except:
-			pass
+			print('输入错误，无用户名')
+			exit()
 		print("正在获取验证码......")
 		try:
 			self.session = requests.session()
