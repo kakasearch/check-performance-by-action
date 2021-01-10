@@ -2,7 +2,7 @@ name: grade-check
 
 on:
   schedule:
-      - cron: 3,35 * * * *
+      - cron: '3/ * * * *'
   push:
 
 jobs:
