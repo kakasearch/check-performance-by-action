@@ -40,7 +40,7 @@ class random_num():#获取验证码
 
 class login():#柔和验证码获取
 	def tryagain(self,name):
-		#print('重试'+name)
+		print('重试'+name)
 		eval("self."+name + '()')
 	def get_str(self):
 		r = self.session.get("http://jwc.swjtu.edu.cn/vatuu/GetRandomNumberToJPEG?test="+str(int(time.time())))
