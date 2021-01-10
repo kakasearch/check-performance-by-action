@@ -62,6 +62,7 @@ class login():#柔和验证码获取
 			except:
 				#print(response.text)
 				self.tryagain('get_str')
+				return
 	def __init__(self,username="",password=""):
 		#获取用户信息
 		if(username and password):
@@ -78,7 +79,7 @@ class login():#柔和验证码获取
 			response = requests.get(host)
 			if response:
 				self.access_token = response.json()['access_token']
-		except:
+		except Exception:
 			self.tryagain('__init__')
 
 		self.get_str()#获取验证码
@@ -106,6 +107,7 @@ class login():#柔和验证码获取
 		#print(loginMsg)
 		if '不正确' in loginMsg:
 			self.__init__(self.username,self.password)
+			return
 
 		#第二步确认登陆
 		sendmsg = {
