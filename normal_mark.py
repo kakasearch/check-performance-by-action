@@ -146,7 +146,7 @@ def check(email_user,username,password,email_,grade_,has_login=0):
 	if not grade_:
 		first =1
 	for tr in trs:
-			cj_str =re.replace(r'<.*?>','',tr)
+			cj_str =re.sub(r'<.*?>','',tr)
 			cj_str = cj_str.replace('&nbsp;','')
 			#检查
 			if first:
@@ -186,10 +186,9 @@ up = 0
 for user in users:
 	username,password,email_ = user
 	print('开始检查平时成绩')
-	try:
-		grade[username]
+	if grade.get(username):
 		need_upload =check(email_user,username,password,email_,grade[username])
-	except:
+	else：
 		need_upload =check(email_user,username,password,email_,[])
 	if need_upload:
 		grade[username] = need_upload
