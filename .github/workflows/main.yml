@@ -2,7 +2,7 @@ name: 成绩检查
 
 on:
   schedule:
-      - cron: '3/30 1-14 * * *'
+      - cron: '3/30 0-14 * * *'
   push:
 
 jobs:
