@@ -147,7 +147,7 @@ def check(email_user,username,password,email_,grade_,has_login=0):
 		first =1
 	for tr in trs:
 			cj_str =re.replace(r'<.*?>','',tr)
-			cj_str  cj_str.replace('&nbsp;','')
+			cj_str = cj_str.replace('&nbsp;','')
 			#检查
 			if first:
 				#first
