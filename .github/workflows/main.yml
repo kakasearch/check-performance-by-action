@@ -1,4 +1,4 @@
-name: 成绩检查 1
+name: 成绩检查
 
 on:
   schedule:
@@ -19,10 +19,13 @@ jobs:
           python-version: 3.7
     - name: 安装依赖
       run: pip install requests lxml webdavclient3
-    - name: 运行主程序
+    - name: 检查期末成绩
       env:
           web_dav: ${{ secrets.web_dav }}
           users: ${{ secrets.users }}
           email_user: ${{ secrets.email_user }}
       run: python mainwebdav.py
+    - name: 检查平时成绩
+      run: python normal_mark.py
+
           
