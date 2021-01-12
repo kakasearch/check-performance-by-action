@@ -188,7 +188,7 @@ for user in users:
 	print('开始检查平时成绩')
 	if grade.get(username):
 		need_upload =check(email_user,username,password,email_,grade[username])
-	else：
+	else:
 		need_upload =check(email_user,username,password,email_,[])
 	if need_upload:
 		grade[username] = need_upload
