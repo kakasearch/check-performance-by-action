@@ -151,7 +151,7 @@ def check(email_user,username,password,email_,grade_,has_login=0):
 			total = ''.join(re.findall(r'\S',tds[5]))
 			end = tds[6]
 			mid = tds[7]
-			cj_str ='科目： '+name+'\n'+'总成绩： '+total+'\n'+'期末成绩： '+end+'\n'+'期中成绩： '+mid+'\n'
+			cj_str ='科目： <b>'+name+'</b><br>总成绩： <b>'+total+'</b><br>期末成绩： <b>'+end+'</b><br>期中成绩： <b>'+mid+'</b><br>'
 			#检查
 			if first:
 				#first
