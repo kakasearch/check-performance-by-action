@@ -96,7 +96,7 @@ def send_email(email_user,receivers,subject='test',content='测试内容'):
 	msg['From'] = sender
 	#邮件正文是MIMEText:
 	msg_content = content#input(u'请输入邮件主内容:')
-	msg.attach(MIMEText(msg_content, 'plain', 'utf-8'))
+	msg.attach(MIMEText(msg_content, 'html', 'utf-8'))
 
 	#登录并发送邮件
 	try:

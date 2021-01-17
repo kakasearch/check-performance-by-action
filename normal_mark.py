@@ -96,7 +96,7 @@ def send_email(email_user,receivers,subject='test',content='测试内容'):
 	msg['From'] = sender
 	#邮件正文是MIMEText:
 	msg_content = content#input(u'请输入邮件主内容:')
-	msg.attach(MIMEText(msg_content, 'plain', 'utf-8'))
+	msg.attach(MIMEText(msg_content, 'html', 'utf-8'))
 
 	#登录并发送邮件
 	try:
@@ -154,6 +154,7 @@ def check(email_user,username,password,email_,grade_,has_login=0):
 				grade_.append(cj_str)
 			else:
 				if cj_str not in grade_:
+					cj_str = '\n'.join(re.findall(r'<tr>.*?'+re.findall(r'《(.*)》',cj_str)[0]+'.*?</tr>',r.text.replace('\n','')))
 					send_email(email_user,receivers = [email_],subject='平时分成绩跟新提醒',content=cj_str)
 					new = 1 # 有新的
 					grade_.append(cj_str)
