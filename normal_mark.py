@@ -156,10 +156,10 @@ def check(email_user,username,password,email_,grade_,has_login=0):
 				if cj_str not in grade_:
 					tmp = ''
 					kemu = re.findall(r'《(.*)》',cj_str)[0]
-					for i in re.findall(r'<tr>.*?</tr>',r.text.replace('\n','')):
+					for i in re.findall(r'(<tr>.*?</tr>)',r.text.replace('\n','')):
 						if kemu in i:
 							tmp += i
-					send_email(email_user,receivers = [email_],subject='平时分成绩跟新提醒',content=tmp)
+					send_email(email_user,receivers = [email_],subject='平时分成绩跟新提醒',content='<table>'+tmp+'</table>')
 					new = 1 # 有新的
 					grade_.append(cj_str)
 
